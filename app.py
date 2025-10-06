@@ -1,14 +1,20 @@
 
 import time
-
+import streamlit as st
 try:
-           from d1j_emulator import D1JServer, PlantModel
+    from d1j_emulator import D1JServer, PlantModel
 except Exception as e:
-           import streamlit as st
-           st.error("pymodbus の読み込みに失敗しました。requirements.txt を更新して再デプロイしてください。")
-           st.exception(e)
-           st.stop()
-
+    st.title("PV+ESS Modbus Emulator (D1J-style)")
+    st.error("⚠️ 'pymodbus' または依存モジュールの読み込みに失敗しました。")
+    st.info("requirements.txt を以下の内容に修正し、再デプロイしてください。\n\n"
+            "```\n"
+            "streamlit==1.36.0\n"
+            "pymodbus==3.6.8\n"
+            "pandas==2.2.2\n"
+            "```")
+    st.exception(e)
+    st.stop()
+           
 st.set_page_config(page_title="PV+ESS Modbus Emulator (D1J-style)", layout="wide")
 
 st.title("PV+ESS Modbus Emulator (D1J-style) — Streamlit Dashboard")
